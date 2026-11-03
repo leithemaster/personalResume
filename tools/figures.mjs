@@ -128,9 +128,9 @@ function thumb() {
   g += `<rect x="16" y="16" width="268" height="188" fill="${C.top}" stroke-width="5"/>`;
   g += `<line x1="16" y1="58" x2="284" y2="58" stroke-width="3"/><line x1="86" y1="58" x2="86" y2="204" stroke-width="3"/><line x1="214" y1="58" x2="214" y2="204" stroke-width="3"/>`;
   // door swings (links) as openings
-  g += `<rect x="40" y="55" width="26" height="6" fill="${C.top}" stroke="none"/><path d="M40,58 A26,26 0 0 1 66,84" stroke-dasharray="3 3"/><line x1="40" y1="58" x2="40" y2="84"/>`;
-  g += `<rect x="83" y="150" width="6" height="26" fill="${C.top}" stroke="none"/><path d="M86,150 A26,26 0 0 1 112,176" stroke-dasharray="3 3"/><line x1="86" y1="150" x2="112" y2="150"/>`;
-  g += `<rect x="211" y="96" width="6" height="26" fill="${C.top}" stroke="none"/><path d="M214,122 A26,26 0 0 1 240,96" stroke-dasharray="3 3"/><line x1="214" y1="122" x2="240" y2="122"/>`;
+  g += `<rect x="40" y="55" width="26" height="6" fill="${C.top}" stroke="none"/><path d="M40,84 A26,26 0 0 0 66,58" stroke-dasharray="3 3"/><line x1="40" y1="58" x2="40" y2="84"/>`;
+  g += `<rect x="83" y="150" width="6" height="26" fill="${C.top}" stroke="none"/><path d="M60,150 A26,26 0 0 0 86,176" stroke-dasharray="3 3"/><line x1="86" y1="150" x2="60" y2="150"/>`;
+  g += `<rect x="211" y="96" width="6" height="26" fill="${C.top}" stroke="none"/><path d="M240,122 A26,26 0 0 0 214,96" stroke-dasharray="3 3"/><line x1="214" y1="122" x2="240" y2="122"/>`;
   g += `<rect x="102" y="76" width="96" height="54" fill="${C.left}" stroke="none"/>`;
   [92, 104, 116].forEach((y) => { g += `<line x1="112" y1="${y}" x2="${y === 116 ? 160 : 188}" y2="${y}" stroke-width="2"/>`; });
   g += `<rect x="102" y="142" width="96" height="44" fill="none" stroke-dasharray="4 3"/>`;
