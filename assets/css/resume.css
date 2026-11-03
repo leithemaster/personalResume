@@ -1,0 +1,55 @@
+﻿/* Resume: a single sheet on paper. Prints as plain black on white. */
+.resume-tools { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: flex-end; width: min(820px, 100% - 2 * var(--m)); margin: 8px auto 20px; }
+.print-btn { font: inherit; background: none; border: 0; cursor: pointer; padding: 6px 0; }
+
+.resume {
+  width: min(820px, 100% - 2 * var(--m)); margin: 0 auto 120px; background: var(--paper); color: var(--paper-ink);
+  padding: clamp(28px, 6vw, 72px) clamp(24px, 6vw, 72px);
+  font-size: 1rem; line-height: 1.55;
+}
+.resume h1 { font-weight: 300; font-size: clamp(2.5rem, 2rem + 2.5vw, 3.5rem); letter-spacing: -0.04em; line-height: 1; }
+.resume__title { font-size: 1.125rem; margin-top: 8px; }
+.resume__contact { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 16px; font-family: var(--mono); font-size: 0.8125rem; color: var(--paper-soft); }
+.resume p, .resume li, .resume dd { max-width: 68ch; }
+.resume .job__stack { max-width: none; }
+.resume__block { margin-top: 32px; padding-top: 16px; border-top: 1px solid rgba(42, 35, 29, 0.3); }
+.resume h2 { font-family: var(--mono); font-weight: 400; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--paper-soft); margin-bottom: 12px; }
+.job + .job { margin-top: 24px; }
+.job__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.job h3 { font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.01em; }
+.job__when { font-family: var(--mono); font-size: 0.8125rem; color: var(--paper-soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.job__proj { color: var(--paper-soft); margin-top: 2px; }
+.job ul { list-style: none; margin-top: 8px; display: grid; gap: 4px; }
+.job li { padding-left: 18px; position: relative; }
+.job li::before { content: "—"; position: absolute; left: 0; color: var(--paper-soft); }
+.job__stack { margin-top: 8px; font-family: var(--mono); font-size: 0.8125rem; color: var(--paper-soft); }
+.resume__cols dl { display: grid; gap: 6px; }
+.resume__cols dl div { display: grid; grid-template-columns: 8.5em 1fr; gap: 16px; }
+.resume__cols dt { font-weight: 500; }
+
+@media screen and (max-width: 760px) {
+  .job__head { flex-direction: column; gap: 2px; }
+  .resume__cols dl div { grid-template-columns: 1fr; gap: 0; }
+  .resume-tools { justify-content: flex-start; }
+}
+
+@page { size: letter; margin: 0.5in 0.6in; }
+@media print {
+  .no-print, .resume-tools, .skip { display: none !important; }
+  :root { color-scheme: light; }
+  html, body { background: #fff !important; color: #000 !important; }
+  .resume__cols dl { grid-template-columns: 1fr; gap: 3pt; }
+  .resume__cols dl div { grid-template-columns: 8.5em 1fr; }
+  .resume { width: auto; max-width: none; margin: 0; padding: 0; background: #fff; color: #000; font-size: 10pt; line-height: 1.4; }
+  .resume h1 { font-size: 26pt; }
+  .resume__title { font-size: 12pt; margin-top: 4pt; }
+  .resume__contact, .resume h2, .job__when, .job__proj, .job__stack, .job li::before { color: #333 !important; }
+  .resume__block { margin-top: 10pt; padding-top: 6pt; border-top: 0.5pt solid #999; }
+  .resume h2 { margin-bottom: 6pt; }
+  .resume__contact { margin-top: 8pt; }
+  .job + .job { margin-top: 9pt; }
+  .job ul { gap: 1pt; margin-top: 4pt; }
+  .job__stack { margin-top: 4pt; }
+  .job, .resume__cols dl div { break-inside: avoid; }
+  .tbd { color: #000 !important; }
+}
