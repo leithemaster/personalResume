@@ -1,4 +1,4 @@
-﻿/* Liem Nguyen — site styles
+/* Liem Nguyen — site styles
    Ground: warm near-black. Ink: off-white. Plates: travertine paper. Accent: terracotta, links and emphasis only. */
 
 :root {
@@ -107,7 +107,7 @@ a { color: inherit; text-decoration: none; }
   padding: 28px var(--m);
   position: relative; z-index: 5;
 }
-.wordmark { font-weight: 500; letter-spacing: -0.01em; font-size: 1.0625rem; }
+.wordmark { white-space: nowrap; font-weight: 500; letter-spacing: -0.01em; font-size: 1.0625rem; }
 .nav { display: flex; gap: clamp(18px, 2.4vw, 36px); font-size: 0.9375rem; }
 .nav a { position: relative; padding-block: 8px; color: var(--ink-soft); transition: color 300ms var(--ease); }
 .nav a:hover, .nav a:focus-visible, .nav a[aria-current="page"] { color: var(--ink); }
@@ -166,7 +166,8 @@ a { color: inherit; text-decoration: none; }
 /* timeline as a dimension string */
 .timeline__head { grid-column: 1 / span 4; }
 .timeline__body { grid-column: 5 / -1; }
-.dimstring { display: grid; grid-template-columns: 1fr 3fr 2fr; margin-top: 8px; }
+/* Columns sized by years: 2018–19, 2019–22, 2022–24, 2024–now. */
+.dimstring { display: grid; grid-template-columns: minmax(9rem, 1fr) minmax(0, 3fr) minmax(0, 2fr) minmax(0, 2fr); margin-top: 8px; }
 .dimstring li { position: relative; padding: 0 16px 0 0; }
 .dimstring .bar { position: relative; height: 32px; margin-bottom: 20px; }
 .dimstring .bar::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--ink-soft); }
@@ -311,8 +312,8 @@ a { color: inherit; text-decoration: none; }
 /* ------------------------------------------------ motion */
 .js [data-reveal] > * { opacity: 0; transform: translateY(24px); transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease); transition-delay: calc(var(--i, 0) * 80ms); }
 .js [data-reveal].is-in > * { opacity: 1; transform: none; }
-.js .plate-reveal > .drawing { clip-path: inset(0 0 100% 0); transition: clip-path 1400ms var(--ease); }
-.js .plate-reveal.is-in > .drawing { clip-path: inset(0 0 0 0); }
+.js .plate-reveal .drawing { clip-path: inset(0 0 100% 0); transition: clip-path 1400ms var(--ease); }
+.js .plate-reveal.is-in .drawing { clip-path: inset(0 0 0 0); }
 
 @supports (animation-timeline: view()) {
   .site-footer__name { animation: settle linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
@@ -321,7 +322,7 @@ a { color: inherit; text-decoration: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 1ms !important; animation: none !important; }
-  .js [data-reveal] > *, .js .plate-reveal > .drawing { opacity: 1; transform: none; clip-path: none; }
+  .js [data-reveal] > *, .js .plate-reveal .drawing { opacity: 1; transform: none; clip-path: none; }
 }
 
 /* ------------------------------------------------ tablet */
@@ -380,6 +381,13 @@ a { color: inherit; text-decoration: none; }
   .chapter .label, .chapter h3, .chapter .prose { grid-column: 1 / -1; }
   .chapter h3 { margin-top: 6px; }
   .sheet { margin-inline: calc(var(--m) * -1); padding: 20px; }
+  /* Wide drawings keep a readable scale on phones: the sheet pans sideways instead of shrinking. */
+  .sheet__scroll { overflow-x: auto; margin-inline: -20px; padding-inline: 20px; -webkit-overflow-scrolling: touch; }
+  .sheet__scroll .drawing { width: 720px; max-width: none; }
+  .sheet__scroll:focus-visible { outline-offset: -2px; }
+  /* Hero drawing: keep the four layer names, larger; drop the small sub-labels. */
+  .drawing--hero .lbl text { font-size: 26px; }
+  .drawing--hero .lbl text + text { display: none; }
   .sheet__bar { flex-direction: column; align-items: stretch; }
   .stages button { flex: 1 1 auto; }
   .about-body .prose, .about-body .plate { grid-column: 1 / -1; }
